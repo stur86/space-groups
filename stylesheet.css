@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
+body {
+    margin: 0;
+    background-color: #000000;
+    position: relative;
+    height: 100vh;
+    box-sizing: border-box;
+    font-family: "Source Sans Pro"
+}
+
+#visualiser {
+    position: absolute;
+    width: 70%;
+    height: 100%;
+
+    background-color: #222222;
+    box-sizing: border-box;
+}
+
+#toolbar {
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    right: 0px;
+
+    border-left: 1px solid white;
+    background-color: #000000;
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+#spg-symbol {
+    font-size: 50pt;
+    font-weight: bold;
+
+    position: relative;
+    width: 100%;
+    color: white;
+    text-align: center;
+    margin-bottom: 5vh;
+}
+
+#spg-form {
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+#spg-xyz {
+    color: white;
+}
+
+#spg-xyz td {
+    padding: 5px 20px 5px 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
