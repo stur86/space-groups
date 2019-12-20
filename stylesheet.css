@@ -58,3 +58,21 @@ body {
     box-sizing: border-box;
     text-align: center;
 }
+
+#spg-x {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #fa7878;
+}
+
+#spg-y {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #78fa78;
+}
+
+#spg-z {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #7878fa;
+}
