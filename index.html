@@ -37,15 +37,17 @@
             <h5 id="spg-parent">
                 Parent:
             </h5>
-            {{parent}}
+            <span class="clickable" v-on:click="pickHallNo(parent)">{{parent}} ({{spgdata.spgdata[parent].spg.international_short}})</span>
         </div>
         <div v-if="children.length > 0">
             <h5 id="spg-children">
                 Children:
             </h5>
-            <ul>
-                <li v-for="c in children">{{c}}</li>
-            </ul>
+            <div id="spg-children-list">
+                <ul>
+                    <li class="clickable" v-for="c in children" v-on:click="pickHallNo(c)">{{c}} ({{spgdata.spgdata[c].spg.international_short}})</li>
+                </ul>
+            </div>
         </div>
 
     </div>

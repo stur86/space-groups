@@ -14,7 +14,9 @@ var app = new Vue({
         this.intsym = this.spg.international_short;
         this.choice = this.spg.choice;
         this.parent = this.spgdata.spg(hno).parent;
-        this.children = this.spgdata.spg(hno).children.sort();
+        var ch = this.spgdata.spg(hno).children.map(function(n) { return parseInt(n)});
+        ch = ch.sort(function(a, b) { return a > b? 1 : b > a? -1 : 0; });
+        this.children = ch;
     },
   },
   beforeCreate: function() {
