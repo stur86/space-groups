@@ -7,7 +7,6 @@
 body {
     margin: 0;
     font-family: "Source Sans Pro";
-    background-color: #000000;
     overflow-y: hidden;
 }
 
@@ -17,33 +16,24 @@ body {
 
 #visualizer {
     height: 100%;
-
+    overflow-y: hidden;    
 }
 
 #visualizer canvas {
     width: 100%;
     height: 100%;
-    touch-action: none;
+}
+
+#navbar {
+    min-width: 250px;
+    overflow-y: auto;
 }
 
 #toolbar {
-    height: 100%;
-
-    color: white;
-    padding-top: 3vh;
-    padding-left: 5vw;
-    border-left: 1px solid white;
+    padding: 1vw;
 }
 
-#spg-children-list {
-    max-height: 25vh;
-    max-width: 70%;
-    overflow-y: scroll;
-    padding: 10px;
-    border: 0.5px solid white;
-    border-radius: 4px;
-}
-
-.clickable {
-    cursor: pointer;
+#spg-intsym {
+    font-size: 5vh;
+    font-weight: bold;
 }

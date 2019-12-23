@@ -4,6 +4,7 @@ var app = new Vue({
     hno: 0,
     intsym: 'P1',
     choice: '',
+    size: 1,
     parent: 0,
     children: [],
   },
@@ -18,6 +19,7 @@ var app = new Vue({
         ch = ch.sort(function(a, b) { return a > b? 1 : b > a? -1 : 0; });
         this.children = ch;
     },
+    colorScale: palette(0, 8),
   },
   beforeCreate: function() {
     this.spgdata = new SpacegroupData();
@@ -26,6 +28,7 @@ var app = new Vue({
     $(document).ready(function() {
         that.vis = new Visualizer();
     });
+
   },
   created: function() {
     this.pickHallNo(1);

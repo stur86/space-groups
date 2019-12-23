@@ -5,51 +5,67 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
 
-    <link rel="stylesheet" href="lib/normalize.css">
-    <link rel="stylesheet" href="lib/skeleton.css">
+<!--     <link rel="stylesheet" href="lib/normalize.css">
+    <link rel="stylesheet" href="lib/skeleton.css"> -->
+
+    <link rel="stylesheet" href="lib/photon/css/photon.min.css">
     <link rel="stylesheet" href="stylesheet.css">
 
     <script src="/lib/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/lib/vue.js" type="text/javascript" charset="utf-8"></script>
     <script src="/lib/babylon.js" type="text/javascript" charset="utf-8"></script>
 
+    <script src="/js/palette.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/vis.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/spg.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/main.js" type="text/javascript" charset="utf-8" async defer></script>
 </head>
 <body>
   <!-- columns should be the immediate child of a .row -->
-  <div class="row" id="main-app">
-    <div class="nine columns" id="visualizer">
-        <canvas id="renderCanvas" touch-action="none"></canvas>
-    </div>
-    <div class="three columns" id="toolbar">
-        <h1 id="spg-intsym">
-            {{intsym}}
-        </h1>
-        <h5 id="spg-hallno">
-            Hall Number: {{hno}}
-        </h5> 
-        <h5 id="spg-choice" v-if="choice != ''">
-            Choice: {{choice}}
-        </h5>
-        <div v-if="parent > 0">
-            <h5 id="spg-parent">
-                Parent:
-            </h5>
-            <span class="clickable" v-on:click="pickHallNo(parent)">{{parent}} ({{spgdata.spgdata[parent].spg.international_short}})</span>
-        </div>
-        <div v-if="children.length > 0">
-            <h5 id="spg-children">
-                Children:
-            </h5>
-            <div id="spg-children-list">
-                <ul>
-                    <li class="clickable" v-for="c in children" v-on:click="pickHallNo(c)">{{c}} ({{spgdata.spgdata[c].spg.international_short}})</li>
-                </ul>
+  <div class="window" id="main-app">
+    <div class="window-content">
+        <div class="pane-group">
+            <div class="pane-sm sidebar" id="navbar">
+
+                <nav class="nav-group">
+                  <h5 class="nav-group-title" id="spg-intsym">{{intsym}}</h5>
+                  <h5 class="nav-group-title">Parent group:</h5>
+                  <span class="nav-group-item" v-if="parent > 0" v-on:click="pickHallNo(parent)">
+                        {{parent}} ({{spgdata.spgdata[parent].spg.international_short}})
+                  </span>
+                  <span class="nav-group-item" v-else>
+                        None
+                  </span>
+
+                  <h5 class="nav-group-title" v-if="children.length > 0">Children:</h5>
+                  <span class="nav-group-item" v-for="c in children" v-on:click="pickHallNo(c)">
+                        <span class="icon icon-record" v-bind:style="{ color: colorScale(Math.log2(spgdata.spgdata[c].ops[0].length))}"></span>
+                        {{c}} ({{spgdata.spgdata[c].spg.international_short}})                        
+                  </span>
+
+                </nav>
+
+            </div>
+
+            <div class="pane" id="visualizer">
+                <canvas id="renderCanvas" touch-action="none">                
+                </canvas>
+            </div>
+
+            <div class="pane-sm sidebar" id="toolbar">
+                Point coordinates:
+                <form>
+                    <div class="form-group">
+                        x:
+                        <input type="text" class="form-control" placeholder="x" value="0">
+                        y:
+                        <input type="text" class="form-control" placeholder="y" value="0">
+                        z:
+                        <input type="text" class="form-control" placeholder="z" value="0">
+                    </div>
+                </form>
             </div>
         </div>
-
     </div>
   </div>
 </body>
