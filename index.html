@@ -57,11 +57,11 @@
                 <form>
                     <div class="form-group">
                         x:
-                        <input type="text" class="form-control" placeholder="x" value="0">
+                        <input type="text" class="form-control" v-on:change="drawDots()" placeholder="x" value="0" v-model.number="point.x">
                         y:
-                        <input type="text" class="form-control" placeholder="y" value="0">
+                        <input type="text" class="form-control" v-on:change="drawDots()"  placeholder="y" value="0" v-model.number="point.y">
                         z:
-                        <input type="text" class="form-control" placeholder="z" value="0">
+                        <input type="text" class="form-control" v-on:change="drawDots()"  placeholder="z" value="0" v-model.number="point.z">
                     </div>
                 </form>
             </div>

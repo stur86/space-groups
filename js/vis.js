@@ -24,7 +24,6 @@ function Visualizer() {
         var box = BABYLON.MeshBuilder.CreateBox("cube", {size:1, alpha: 0}, scene);
         var material_invisible = new BABYLON.StandardMaterial('invmat', scene);
         material_invisible.alpha = 0.0;
-
         box.enableEdgesRendering();    
         box.edgesWidth = 1.0;
         box.edgesColor = new BABYLON.Color4(1, 1, 1, 0.7);
@@ -35,6 +34,12 @@ function Visualizer() {
     /******* End of the create scene function ******/    
 
     var scene = createScene(); //Call the createScene function
+     // Sprite manager for dots
+    var dotmanager = new BABYLON.SpriteManager("dotManager", 
+                                               "assets/circle.png", 
+                                               512, 128, scene);
+        
+   
 
     // Register a render loop to repeatedly render the scene
     engine.runRenderLoop(function () { 
@@ -49,4 +54,35 @@ function Visualizer() {
     this.canvas = canvas;
     this.engine = engine;
     this.scene = scene;
+    this.dotm = dotmanager;
+    this.dots = [];
+
+    this.addDot = function(x, y, z, c, s) {
+        s = s || 0.05;
+        c = c || new BABYLON.Color4(1,1,1,1);
+
+        var dot = new BABYLON.Sprite("dot", this.dotm);
+
+        dot.position.x = x;
+        dot.position.y = y;
+        dot.position.z = z;
+        dot.color = c;
+        dot.size = s;
+
+        this.dots.push(dot);
+    }
+
+    this.moveDot = function(i, x, y, z) {
+        var dot = this.dots[i];
+        dot.position.x = x;
+        dot.position.y = y;
+        dot.position.z = z;        
+    }
+
+    this.clearDots = function() {
+        for (var i = 0; i < this.dots.length; ++i) {
+            this.dots[i].dispose();
+        }
+        this.dots = [];
+    }
 }
